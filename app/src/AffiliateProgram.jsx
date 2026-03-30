@@ -517,12 +517,24 @@ const AffiliateProgram = () => {
           <div className="w-full h-px bg-white/5 mb-8"></div>
 
           {/* Bottom Footer Info */}
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-xs lg:text-sm text-gray-500">
+          <div className="flex flex-col lg:flex-row justify-between items-center gap-6 text-xs lg:text-sm text-gray-500">
             <p>© 2026 Oxxy Healthcare. All rights reserved. Built with <span className="text-red-500">❤️</span> for India.</p>
-            <div className="flex gap-6">
+
+            <div className="flex flex-wrap justify-center lg:justify-end items-center gap-4 lg:gap-6">
               <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
               <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
               <a href="#" className="hover:text-white transition-colors">Cookie Policy</a>
+
+              {/* Site Credits (Glassmorphic Pill) */}
+              <div className="flex items-center gap-4 bg-white/5 backdrop-blur-xl border border-white/10 rounded-full py-1.5 px-4 shadow-xl hover:bg-white/10 transition-colors lg:ml-2">
+                <a href="https://fabulousmedia.in" target="_blank" rel="noreferrer" className="flex items-center justify-center opacity-80 hover:opacity-100 transition-opacity hover:scale-105 duration-300">
+                  <img src="/sitecredits/fabulous.png" alt="Fabulous Media" className="h-[20px] w-auto object-contain" />
+                </a>
+                <div className="h-5 w-px bg-white/20"></div>
+                <a href="https://gocommercially.com" target="_blank" rel="noreferrer" className="flex items-center justify-center opacity-80 hover:opacity-100 transition-opacity hover:scale-105 duration-300">
+                  <img src="/sitecredits/gocomercially.svg" alt="Go Commercially" className="h-[14px] w-auto object-contain" />
+                </a>
+              </div>
             </div>
           </div>
 
