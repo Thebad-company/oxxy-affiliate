@@ -21,6 +21,8 @@ const AffiliateProgram = () => {
   const toggleFaq = (index) => {
     setOpenFaq(openFaq === index ? null : index);
   };
+  
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const validate = () => {
     let tempErrors = {};
@@ -78,43 +80,84 @@ const AffiliateProgram = () => {
           <div className="flex items-center gap-2">
             <img src="/oxxy_logo.png" alt="Oxxy Logo" className="h-10 object-contain" />
           </div>
+          
+          {/* Desktop Menu */}
           <div className="hidden sm:flex items-center gap-8 font-medium text-sm text-gray-700">
             <a href="#about" className="hover:text-primary transition-colors">How It Works</a>
             <a href="#benefits" className="hover:text-primary transition-colors">Features</a>
             <a href="#apply-form" className="px-6 py-2.5 bg-primary text-white rounded-full hover:bg-primary-dark transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5">Apply Now</a>
           </div>
+
+          {/* Mobile Menu Button */}
+          <div className="sm:hidden flex items-center">
+            <button 
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} 
+              className="text-gray-700 hover:text-primary focus:outline-none"
+            >
+              <span className="material-symbols-outlined text-3xl">
+                {isMobileMenuOpen ? 'close' : 'menu'}
+              </span>
+            </button>
+          </div>
         </div>
+
+        {/* Mobile Dropdown Menu */}
+        {isMobileMenuOpen && (
+          <div className="sm:hidden bg-white border-t border-gray-100 shadow-xl absolute top-20 left-0 w-full flex flex-col p-6 gap-6 font-medium text-lg text-gray-800 transition-all z-40">
+            <a 
+              href="#about" 
+              className="hover:text-primary border-b border-gray-50 pb-2"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              How It Works
+            </a>
+            <a 
+              href="#benefits" 
+              className="hover:text-primary border-b border-gray-50 pb-2"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Features
+            </a>
+            <a 
+              href="#apply-form" 
+              className="px-6 py-3 bg-primary text-white text-center rounded-full hover:bg-primary-dark transition-all shadow-md mt-2"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Apply Now
+            </a>
+          </div>
+        )}
       </nav>
 
       {/* 1. Hero Section */}
-      <section className="relative pt-32 pb-24 px-6 bg-gradient-to-br from-green-50 via-white to-green-50 min-h-screen flex items-center">
+      <section className="relative pt-28 md:pt-32 pb-12 md:pb-24 px-6 bg-gradient-to-br from-green-50 via-white to-green-50 flex items-center">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.03]"></div>
 
-        <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
           <div className="flex flex-col items-start text-left">
-            <span className="inline-block bg-white text-primary-dark px-5 py-2 rounded-full text-sm font-bold mb-8 shadow-sm border border-green-100 flex items-center gap-2">
-              <span className="text-xl">🇮🇳</span> Exclusive Opportunity for Doctors & Chemists
+            <span className="inline-block bg-white text-primary-dark px-4 md:px-5 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-bold mb-6 md:mb-8 shadow-sm border border-green-100 flex items-center gap-2">
+              <span className="text-lg md:text-xl">🇮🇳</span> Exclusive Opportunity for Doctors & Chemists
             </span>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-display font-bold mb-6 leading-tight text-gray-900 tracking-tight">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold mb-4 md:mb-6 leading-tight text-gray-900 tracking-tight">
               🚀 Join the Oxxy <br className="hidden md:block" />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-teal-custom">
                 Affiliate Program
               </span>
             </h1>
-            <p className="text-xl md:text-2xl mb-10 font-medium text-gray-600 max-w-2xl">
+            <p className="text-lg md:text-2xl mb-8 md:mb-10 font-medium text-gray-600 max-w-2xl text-left">
               For Doctors, Pharmacy Owners, & Clinicians Who Want to Empower Patients and Grow Their Revenue.
             </p>
 
             <a
               href="#apply-form"
-              className="inline-flex items-center justify-center px-8 py-4 bg-white text-primary font-bold rounded-2xl text-xl hover:bg-gray-50 transition-all shadow-xl hover:shadow-2xl border-2 border-primary transform hover:-translate-y-1"
+              className="inline-flex items-center justify-center px-6 py-3 md:px-8 md:py-4 bg-white text-primary font-bold rounded-2xl text-lg md:text-xl hover:bg-gray-50 transition-all shadow-lg md:shadow-xl hover:shadow-2xl border-2 border-primary transform hover:-translate-y-1 w-full md:w-auto"
             >
               Apply Now - Limited Slots
               <span className="material-symbols-outlined ml-2 animate-bounce">arrow_downward</span>
             </a>
           </div>
           
-          <div className="relative mt-12 lg:mt-0 w-full max-w-xl mx-auto">
+          <div className="relative mt-10 lg:mt-0 w-full max-w-xl mx-auto">
             <div className="absolute inset-0 bg-gradient-to-tr from-primary to-teal-custom rounded-3xl transform rotate-3 scale-105 opacity-20 blur-xl"></div>
             <img 
               src="/hero-image.png" 
@@ -126,8 +169,8 @@ const AffiliateProgram = () => {
       </section>
 
       {/* Trust Badges */}
-      <section className="py-8 bg-white border-b border-gray-100 flex overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 w-full flex flex-wrap justify-center md:justify-between items-center gap-8 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+      <section className="py-8 bg-white border-b border-gray-100 overflow-hidden">
+        <div className="max-w-fit md:max-w-7xl mx-auto px-6 w-full flex flex-col md:flex-row justify-start md:justify-between items-start md:items-center gap-6 md:gap-8 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
           <div className="flex items-center gap-3 font-semibold text-gray-700">
              <span className="material-symbols-outlined text-green-600 text-3xl">verified_user</span>
              100% Data Privacy Compliant
@@ -170,19 +213,19 @@ const AffiliateProgram = () => {
           <div className="flex-1 w-full relative">
             <div className="absolute inset-0 bg-gradient-to-tr from-primary to-teal-custom blur-2xl opacity-20 rounded-[40px] transform rotate-3 delay-150 transition-all duration-1000"></div>
             <div className="bg-white/80 backdrop-blur-xl border border-white p-8 md:p-10 rounded-[40px] shadow-2xl relative z-10">
-               <div className="grid grid-cols-2 gap-6">
+               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
                  <div className="bg-green-50 rounded-3xl p-6 text-center shadow-inner">
-                   <div className="text-5xl md:text-6xl font-bold text-primary mb-2">500+</div>
-                   <div className="text-sm font-bold tracking-wider uppercase text-gray-600">Active Clinics</div>
+                   <div className="text-4xl md:text-6xl font-bold text-primary mb-2">500+</div>
+                   <div className="text-xs sm:text-sm font-bold tracking-wider uppercase text-gray-600">Active Clinics</div>
                  </div>
                  <div className="bg-teal-50 rounded-3xl p-6 text-center shadow-inner">
-                   <div className="text-5xl md:text-6xl font-bold text-teal-600 mb-2">100k+</div>
-                   <div className="text-sm font-bold tracking-wider uppercase text-gray-600">Happy Patients</div>
+                   <div className="text-4xl md:text-6xl font-bold text-teal-600 mb-2">100k+</div>
+                   <div className="text-xs sm:text-sm font-bold tracking-wider uppercase text-gray-600">Happy Patients</div>
                  </div>
-                 <div className="col-span-2 bg-gradient-to-r from-gray-50 to-white border border-gray-100 rounded-3xl p-6 md:p-8 flex items-center justify-between group hover:border-primary/30 transition-colors">
+                 <div className="col-span-1 sm:col-span-2 bg-gradient-to-r from-gray-50 to-white border border-gray-100 rounded-3xl p-6 md:p-8 flex flex-col sm:flex-row items-center justify-between gap-4 group hover:border-primary/30 transition-colors text-center sm:text-left">
                    <div>
                      <div className="text-2xl font-bold text-gray-900 mb-1 group-hover:text-primary transition-colors">Guaranteed ROI</div>
-                     <div className="text-sm text-gray-500 font-medium">For every partnered medical professional</div>
+                     <div className="text-xs sm:text-sm text-gray-500 font-medium">For every partnered medical professional</div>
                    </div>
                    <span className="material-symbols-outlined text-primary text-5xl">verified</span>
                  </div>
