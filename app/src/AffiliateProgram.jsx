@@ -1,4 +1,33 @@
 import React, { useState } from 'react';
+import {
+  Menu,
+  X,
+  ArrowDown,
+  ShieldCheck,
+  Wallet,
+  Clock,
+  Stethoscope,
+  TrendingUp,
+  BadgeCheck,
+  ClipboardPlus,
+  Pointer,
+  Check,
+  MapPin,
+  Quote,
+  ArrowRight,
+  ChevronDown,
+  CheckCircle2,
+  Lock,
+  AlertTriangle,
+  Phone,
+  MessageCircle,
+  Mail,
+  IndianRupee,
+  Heart,
+  Users,
+  Megaphone
+} from 'lucide-react';
+
 
 const AffiliateProgram = () => {
   const [formData, setFormData] = useState({
@@ -94,9 +123,7 @@ const AffiliateProgram = () => {
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} 
               className="text-gray-700 hover:text-primary focus:outline-none"
             >
-              <span className="material-symbols-outlined text-3xl">
-                {isMobileMenuOpen ? 'close' : 'menu'}
-              </span>
+              {isMobileMenuOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
             </button>
           </div>
         </div>
@@ -130,7 +157,7 @@ const AffiliateProgram = () => {
       </nav>
 
       {/* 1. Hero Section */}
-      <section className="relative pt-28 md:pt-32 pb-12 md:pb-24 px-6 bg-gradient-to-br from-green-50 via-white to-green-50 flex items-center">
+      <section className="relative pt-28 md:pt-32 pb-12 md:pb-24 px-6 bg-gradient-to-br from-green-50 via-white to-green-50 flex items-center lg:min-h-screen">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.03]"></div>
 
         <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
@@ -153,7 +180,7 @@ const AffiliateProgram = () => {
               className="inline-flex items-center justify-center px-6 py-3 md:px-8 md:py-4 bg-white text-primary font-bold rounded-2xl text-lg md:text-xl hover:bg-gray-50 transition-all shadow-lg md:shadow-xl hover:shadow-2xl border-2 border-primary transform hover:-translate-y-1 w-full md:w-auto"
             >
               Apply Now - Limited Slots
-              <span className="material-symbols-outlined ml-2 animate-bounce">arrow_downward</span>
+              <ArrowDown className="ml-2 animate-bounce" />
             </a>
           </div>
           
@@ -172,19 +199,19 @@ const AffiliateProgram = () => {
       <section className="py-8 bg-white border-b border-gray-100 overflow-hidden">
         <div className="max-w-fit md:max-w-7xl mx-auto px-6 w-full flex flex-col md:flex-row justify-start md:justify-between items-start md:items-center gap-6 md:gap-8 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
           <div className="flex items-center gap-3 font-semibold text-gray-700">
-             <span className="material-symbols-outlined text-green-600 text-3xl">verified_user</span>
+             <ShieldCheck className="text-green-600 text-3xl" />
              100% Data Privacy Compliant
           </div>
           <div className="flex items-center gap-3 font-semibold text-gray-700">
-             <span className="material-symbols-outlined text-blue-600 text-3xl">account_balance_wallet</span>
+             <Wallet className="text-blue-600 text-3xl" />
              Zero Setup Cost
           </div>
           <div className="flex items-center gap-3 font-semibold text-gray-700">
-             <span className="material-symbols-outlined text-purple-600 text-3xl">update</span>
+             <Clock className="text-purple-600 text-3xl" />
              24-Hour Automated Payouts
           </div>
           <div className="flex items-center gap-3 font-semibold text-gray-700">
-             <span className="material-symbols-outlined text-red-600 text-3xl">medical_services</span>
+             <Stethoscope className="text-red-600 text-3xl" />
              Approved by Leading Medical Bodies
           </div>
         </div>
@@ -206,7 +233,7 @@ const AffiliateProgram = () => {
               Oxxy is India's largest healthcare network, bringing affordable and accessible medical services to millions. As an Oxxy-partnered Doctor or Chemist, you empower your patients with tremendous savings on their medical bills while simultaneously establishing a highly profitable, recurring revenue stream.
             </p>
             <div className="flex items-center gap-4 text-primary font-bold bg-green-50/50 p-4 rounded-2xl border border-green-100/50">
-              <span className="material-symbols-outlined text-3xl">trending_up</span>
+              <TrendingUp className="text-3xl" />
               It's practice-growth fueled by genuine patient care.
             </div>
           </div>
@@ -227,7 +254,7 @@ const AffiliateProgram = () => {
                      <div className="text-2xl font-bold text-gray-900 mb-1 group-hover:text-primary transition-colors">Guaranteed ROI</div>
                      <div className="text-xs sm:text-sm text-gray-500 font-medium">For every partnered medical professional</div>
                    </div>
-                   <span className="material-symbols-outlined text-primary text-5xl">verified</span>
+                   <BadgeCheck className="text-primary text-5xl" />
                  </div>
                </div>
             </div>
@@ -252,7 +279,7 @@ const AffiliateProgram = () => {
              <div className="bg-white rounded-[32px] p-10 border border-gray-100 shadow-lg relative z-10 group hover:-translate-y-4 transition-all duration-300 hover:shadow-2xl hover:border-green-200 mx-auto w-full max-w-sm">
                 <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-gray-900 text-white w-10 h-10 rounded-xl flex items-center justify-center font-bold shadow-lg">1</div>
                 <div className="w-24 h-24 bg-green-50 text-primary rounded-full flex items-center justify-center mx-auto mb-8 shadow-inner border-[6px] border-white group-hover:scale-110 transition-transform duration-300">
-                  <span className="material-symbols-outlined text-4xl">medical_information</span>
+                  <ClipboardPlus className="text-4xl" />
                 </div>
                 <h3 className="text-2xl font-bold mb-4 text-gray-900">Patient Visits</h3>
                 <p className="text-gray-500 leading-relaxed font-medium">The patient visits your clinic for consultation or purchases medicine from your pharmacy as usual.</p>
@@ -262,7 +289,7 @@ const AffiliateProgram = () => {
              <div className="bg-white rounded-[32px] p-10 border border-gray-100 shadow-lg relative z-10 group hover:-translate-y-4 transition-all duration-300 hover:shadow-2xl hover:border-teal-200 mx-auto w-full max-w-sm">
                 <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-gray-900 text-white w-10 h-10 rounded-xl flex items-center justify-center font-bold shadow-lg">2</div>
                 <div className="w-24 h-24 bg-teal-50 text-teal-600 rounded-full flex items-center justify-center mx-auto mb-8 shadow-inner border-[6px] border-white group-hover:scale-110 transition-transform duration-300">
-                  <span className="material-symbols-outlined text-4xl">touch_app</span>
+                  <Pointer className="text-4xl" />
                 </div>
                 <h3 className="text-2xl font-bold mb-4 text-gray-900">You Offer Oxxy</h3>
                 <p className="text-gray-500 leading-relaxed font-medium">Your staff quickly scans their details into the Oxxy network, granting them an instant discount membership.</p>
@@ -272,7 +299,7 @@ const AffiliateProgram = () => {
              <div className="bg-gradient-to-b from-white to-green-50/50 rounded-[32px] p-10 border border-green-100 shadow-xl relative z-10 group hover:-translate-y-4 transition-all duration-300 hover:shadow-2xl transform md:scale-105 border-b-[6px] border-b-primary mx-auto w-full max-w-sm">
                 <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-primary text-white w-10 h-10 rounded-xl flex items-center justify-center font-bold shadow-lg">3</div>
                 <div className="w-24 h-24 bg-gradient-to-tr from-primary to-teal-custom text-white rounded-full flex items-center justify-center mx-auto mb-8 shadow-inner border-[6px] border-white group-hover:rotate-12 transition-transform duration-300">
-                  <span className="material-symbols-outlined text-4xl">account_balance_wallet</span>
+                  <Wallet className="text-4xl" />
                 </div>
                 <h3 className="text-2xl font-bold mb-4 text-primary-dark">They Save, You Earn</h3>
                 <p className="text-gray-700 leading-relaxed font-semibold">The patient saves massively on future diagnostics. You earn an instant, recurring commission automatically.</p>
@@ -294,16 +321,16 @@ const AffiliateProgram = () => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {[
-            { icon: 'lock', title: 'City Lock-in Rights', desc: 'Secure exclusive Oxxy rights in your city. Be the premier healthcare provider with access to our network.' },
-            { icon: 'currency_rupee', title: 'Recurring Practice Revenue', desc: 'Earn monthly recurring commissions for every patient or customer who subscribes through your clinic/pharmacy.' },
-            { icon: 'favorite', title: 'Patient Retention', desc: 'Provide unmatched diagnostic and surgical savings, ensuring your patients always return to you.' },
-            { icon: 'group', title: 'Dedicated Support', desc: 'Get a dedicated account manager to assist your clinic and staff directly via WhatsApp and calls.' },
-            { icon: 'campaign', title: 'Clinic Branding Materials', desc: 'Ready-made standees, desk-brochures, and digital creatives for your clinic or pharmacy.' },
-            { icon: 'verified', title: 'Trusted Network', desc: 'Join a rapidly growing medical ecosystem built for doctors, trusted by millions of patients.' },
+            { icon: Lock, title: 'City Lock-in Rights', desc: 'Secure exclusive Oxxy rights in your city. Be the premier healthcare provider with access to our network.' },
+            { icon: IndianRupee, title: 'Recurring Practice Revenue', desc: 'Earn monthly recurring commissions for every patient or customer who subscribes through your clinic/pharmacy.' },
+            { icon: Heart, title: 'Patient Retention', desc: 'Provide unmatched diagnostic and surgical savings, ensuring your patients always return to you.' },
+            { icon: Users, title: 'Dedicated Support', desc: 'Get a dedicated account manager to assist your clinic and staff directly via WhatsApp and calls.' },
+            { icon: Megaphone, title: 'Clinic Branding Materials', desc: 'Ready-made standees, desk-brochures, and digital creatives for your clinic or pharmacy.' },
+            { icon: BadgeCheck, title: 'Trusted Network', desc: 'Join a rapidly growing medical ecosystem built for doctors, trusted by millions of patients.' },
           ].map((feature, idx) => (
             <div key={idx} className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md hover:border-green-200 transition-all text-left">
               <div className="w-14 h-14 bg-green-50 text-primary rounded-xl flex items-center justify-center mb-6">
-                <span className="material-symbols-outlined text-3xl">{feature.icon}</span>
+                <feature.icon className="w-8 h-8" />
               </div>
               <h3 className="text-xl font-bold mb-3 text-gray-900">{feature.title}</h3>
               <p className="text-gray-600 text-sm leading-relaxed">{feature.desc}</p>
@@ -360,7 +387,7 @@ const AffiliateProgram = () => {
       <section className="bg-green-50/40 py-24 px-6 border-t border-b border-green-100/50">
         <div className="max-w-5xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-12">
-            🇮🇳 Who Is This For?
+            Who Is This For?
           </h2>
 
           <div className="bg-white border-t-4 border-primary rounded-3xl shadow-lg p-10 md:p-14 text-left">
@@ -378,7 +405,7 @@ const AffiliateProgram = () => {
               ].map((item, idx) => (
                 <div key={idx} className="flex items-start gap-4">
                   <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <span className="material-symbols-outlined text-primary text-sm font-bold">done</span>
+                    <Check className="text-primary text-sm font-bold" />
                   </div>
                   <p className="text-gray-700 text-lg leading-relaxed">{item}</p>
                 </div>
@@ -417,7 +444,7 @@ const AffiliateProgram = () => {
               <ul className="text-gray-700 font-medium space-y-4 mb-8 text-left border-t border-gray-100 pt-6">
                 {tier.cities.map((city, cIdx) => (
                   <li key={cIdx} className="flex items-center gap-3">
-                    <span className="material-symbols-outlined text-primary text-lg transition-transform duration-300 group-hover:scale-125">location_on</span>
+                    <MapPin className="text-primary text-lg transition-transform duration-300 group-hover:scale-125" />
                     {city}
                   </li>
                 ))}
@@ -445,7 +472,7 @@ const AffiliateProgram = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                <div className="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 relative pt-12">
                   <div className="absolute -top-6 left-8 bg-primary rounded-full w-12 h-12 flex items-center justify-center text-white shadow-lg text-2xl">
-                     <span className="material-symbols-outlined">format_quote</span>
+                     <Quote className="" />
                   </div>
                   <p className="text-gray-700 text-lg italic mb-6 leading-relaxed">
                      "Integrating Oxxy was frictionless. It takes our receptionist 30 seconds to sign up a patient, and they love the diagnostic discounts. My clinic's secondary revenue jumped by 40% in just 3 months without any extra infrastructure."
@@ -461,7 +488,7 @@ const AffiliateProgram = () => {
                
                <div className="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 relative pt-12">
                   <div className="absolute -top-6 left-8 bg-teal-custom rounded-full w-12 h-12 flex items-center justify-center text-white shadow-lg text-2xl">
-                     <span className="material-symbols-outlined">format_quote</span>
+                     <Quote className="" />
                   </div>
                   <p className="text-gray-700 text-lg italic mb-6 leading-relaxed">
                      "As a pharmacy, margins were getting tight. We started offering the Oxxy plan to chronic patients buying monthly meds. The recurring commissions cover my entire shop's rent now. Highly recommended."
@@ -486,17 +513,22 @@ const AffiliateProgram = () => {
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
-            {/* Desktop connection line */}
-            <div className="hidden md:block absolute top-[2.5rem] left-[12%] right-[12%] h-1 bg-green-200/50 -z-10"></div>
-
             {[
               { num: '01', title: 'Submit Clinic Details', desc: 'Complete the form below with your professional details and city.' },
               { num: '02', title: 'Verification', desc: 'Our medical panel will verify your practice or pharmacy within 24 hours.' },
               { num: '03', title: 'Secure Exclusivity', desc: 'Lock in your city-level exclusivity and complete network onboarding.' },
               { num: '04', title: 'Empower Patients', desc: 'Receive your clinic materials, help patients save, and start generating revenue.' },
             ].map((step, idx) => (
-              <div key={idx} className="relative z-10 w-full flex flex-col items-center">
-                <div className="w-20 h-20 bg-white border-4 border-primary rounded-full shadow-lg flex items-center justify-center mb-6 text-2xl font-bold text-primary">
+              <div key={idx} className="relative w-full flex flex-col items-center">
+                
+                {/* Next Step Arrow (Desktop) */}
+                {idx < 3 && (
+                  <div className="hidden md:flex absolute top-10 -right-4 translate-x-1/2 -translate-y-1/2 items-center justify-center text-green-300 z-0 opacity-80">
+                    <ArrowRight className="text-4xl" />
+                  </div>
+                )}
+
+                <div className="relative z-10 w-20 h-20 bg-white border-4 border-primary rounded-full shadow-lg flex items-center justify-center mb-6 text-2xl font-bold text-primary">
                   {step.num}
                 </div>
                 <h3 className="font-bold text-lg mb-3 text-gray-900">{step.title}</h3>
@@ -530,9 +562,7 @@ const AffiliateProgram = () => {
                   className="w-full px-6 py-5 bg-white text-left font-bold text-gray-900 hover:bg-gray-50 flex items-center justify-between focus:outline-none"
                 >
                   {faq.q}
-                  <span className={`material-symbols-outlined transition-transform duration-300 ${openFaq === idx ? 'rotate-180 text-primary' : 'text-gray-400'}`}>
-                    expand_more
-                  </span>
+                  <ChevronDown className={`transition-transform duration-300 ${openFaq === idx ? 'rotate-180 text-primary' : 'text-gray-400'}`} />
                 </button>
                 <div className={`px-6 overflow-hidden transition-all duration-300 ease-in-out ${openFaq === idx ? 'max-h-[500px] py-5 border-t border-gray-100 bg-gray-50/50' : 'max-h-0 py-0'}`}>
                   <p className="text-gray-600 leading-relaxed">{faq.a}</p>
@@ -561,7 +591,7 @@ const AffiliateProgram = () => {
             {isSubmitted ? (
               <div className="text-center py-16">
                 <div className="w-24 h-24 bg-green-50 text-primary rounded-full flex items-center justify-center mx-auto mb-6 transform scale-110">
-                  <span className="material-symbols-outlined text-5xl">check_circle</span>
+                  <CheckCircle2 className="text-5xl" />
                 </div>
                 <h3 className="text-3xl font-bold text-gray-900 mb-4">Application Received!</h3>
                 <p className="text-gray-600 mb-10 text-lg max-w-md mx-auto">
@@ -703,7 +733,7 @@ const AffiliateProgram = () => {
                     Submit Complete Application
                   </button>
                   <p className="text-center text-sm text-gray-500 mt-6 flex items-center justify-center gap-2">
-                    <span className="material-symbols-outlined text-gray-400">lock</span>
+                    <Lock className="text-gray-400" />
                     Your data is secure. We never sell your information.
                   </p>
                 </div>
@@ -718,7 +748,7 @@ const AffiliateProgram = () => {
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/black-linen.png')] opacity-10"></div>
         <div className="max-w-4xl mx-auto relative z-10">
           <div className="flex justify-center mb-8">
-            <span className="material-symbols-outlined text-6xl text-white/90">warning</span>
+            <AlertTriangle className="text-6xl text-white/90" />
           </div>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-8 text-white leading-tight">
             Ready to Claim Your City?
@@ -795,15 +825,15 @@ const AffiliateProgram = () => {
               <h4 className="text-primary font-bold text-[17px] mb-6 tracking-wide">Support</h4>
               <div className="flex flex-col gap-5">
                 <a href="tel:8800855340" className="flex items-center gap-4 text-gray-300 hover:text-white transition-colors group">
-                  <span className="material-symbols-outlined text-gray-400 group-hover:text-primary transition-colors">call</span>
+                  <Phone className="text-gray-400 group-hover:text-primary transition-colors" />
                   <span>8800855340</span>
                 </a>
                 <a href="https://wa.me/918800855340" target="_blank" rel="noreferrer" className="flex items-center gap-4 text-gray-300 hover:text-white transition-colors group">
-                  <span className="material-symbols-outlined text-gray-400 group-hover:text-primary transition-colors">chat</span>
+                  <MessageCircle className="text-gray-400 group-hover:text-primary transition-colors" />
                   <span>8800855340</span>
                 </a>
                 <a href="mailto:info@oxxy.in" className="flex items-center gap-4 text-gray-300 hover:text-white transition-colors group">
-                  <span className="material-symbols-outlined text-gray-400 group-hover:text-primary transition-colors">mail</span>
+                  <Mail className="text-gray-400 group-hover:text-primary transition-colors" />
                   <span>info@oxxy.in</span>
                 </a>
               </div>
