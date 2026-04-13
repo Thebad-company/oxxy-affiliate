@@ -50,7 +50,7 @@ const AffiliateProgram = () => {
   const toggleFaq = (index) => {
     setOpenFaq(openFaq === index ? null : index);
   };
-  
+
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const validate = () => {
@@ -109,7 +109,7 @@ const AffiliateProgram = () => {
           <div className="flex items-center gap-2">
             <img src="/oxxy_logo.png" alt="Oxxy Logo" className="h-10 object-contain" />
           </div>
-          
+
           {/* Desktop Menu */}
           <div className="hidden sm:flex items-center gap-8 font-medium text-sm text-gray-700">
             <a href="#about" className="hover:text-primary transition-colors">How It Works</a>
@@ -119,8 +119,8 @@ const AffiliateProgram = () => {
 
           {/* Mobile Menu Button */}
           <div className="sm:hidden flex items-center">
-            <button 
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} 
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="text-gray-700 hover:text-primary focus:outline-none"
             >
               {isMobileMenuOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
@@ -131,22 +131,22 @@ const AffiliateProgram = () => {
         {/* Mobile Dropdown Menu */}
         {isMobileMenuOpen && (
           <div className="sm:hidden bg-white border-t border-gray-100 shadow-xl absolute top-20 left-0 w-full flex flex-col p-6 gap-6 font-medium text-lg text-gray-800 transition-all z-40">
-            <a 
-              href="#about" 
+            <a
+              href="#about"
               className="hover:text-primary border-b border-gray-50 pb-2"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               How It Works
             </a>
-            <a 
-              href="#benefits" 
+            <a
+              href="#benefits"
               className="hover:text-primary border-b border-gray-50 pb-2"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Features
             </a>
-            <a 
-              href="#apply-form" 
+            <a
+              href="#apply-form"
               className="px-6 py-3 bg-primary text-white text-center rounded-full hover:bg-primary-dark transition-all shadow-md mt-2"
               onClick={() => setIsMobileMenuOpen(false)}
             >
@@ -172,7 +172,7 @@ const AffiliateProgram = () => {
               </span>
             </h1>
             <p className="text-lg md:text-2xl mb-8 md:mb-10 font-medium text-gray-600 max-w-2xl text-left">
-              For Doctors, Pharmacy Owners, & Clinicians Who Want to Empower Patients and Grow Their Revenue.
+              For Doctors, Pharmacy Owners, & Pathlab Owners Who Want to Empower Patients and Grow Their Revenue.
             </p>
 
             <a
@@ -183,12 +183,12 @@ const AffiliateProgram = () => {
               <ArrowDown className="ml-2 animate-bounce" />
             </a>
           </div>
-          
+
           <div className="relative mt-10 lg:mt-0 w-full max-w-xl mx-auto">
             <div className="absolute inset-0 bg-gradient-to-tr from-primary to-teal-custom rounded-3xl transform rotate-3 scale-105 opacity-20 blur-xl"></div>
-            <img 
-              src="/hero-image.png" 
-              alt="Healthcare Professionals" 
+            <img
+              src="/hero-image.png"
+              alt="Healthcare Professionals"
               className="relative z-10 w-full h-auto rounded-3xl shadow-2xl border-4 border-white object-cover aspect-[4/3] transform hover:-translate-y-2 transition-transform duration-500"
             />
           </div>
@@ -199,20 +199,16 @@ const AffiliateProgram = () => {
       <section className="py-8 bg-white border-b border-gray-100 overflow-hidden">
         <div className="max-w-fit md:max-w-7xl mx-auto px-6 w-full flex flex-col md:flex-row justify-start md:justify-between items-start md:items-center gap-6 md:gap-8 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
           <div className="flex items-center gap-3 font-semibold text-gray-700">
-             <ShieldCheck className="text-green-600 text-3xl" />
-             100% Data Privacy Compliant
+            <ShieldCheck className="text-green-600 text-3xl" />
+            100% Data Privacy Compliant
           </div>
           <div className="flex items-center gap-3 font-semibold text-gray-700">
-             <Wallet className="text-blue-600 text-3xl" />
-             Zero Setup Cost
+            <Wallet className="text-blue-600 text-3xl" />
+            Zero Setup Cost
           </div>
           <div className="flex items-center gap-3 font-semibold text-gray-700">
-             <Clock className="text-purple-600 text-3xl" />
-             24-Hour Automated Payouts
-          </div>
-          <div className="flex items-center gap-3 font-semibold text-gray-700">
-             <Stethoscope className="text-red-600 text-3xl" />
-             Approved by Leading Medical Bodies
+            <Clock className="text-purple-600 text-3xl" />
+            24-Hour Automated Payouts
           </div>
         </div>
       </section>
@@ -240,23 +236,23 @@ const AffiliateProgram = () => {
           <div className="flex-1 w-full relative">
             <div className="absolute inset-0 bg-gradient-to-tr from-primary to-teal-custom blur-2xl opacity-20 rounded-[40px] transform rotate-3 delay-150 transition-all duration-1000"></div>
             <div className="bg-white/80 backdrop-blur-xl border border-white p-8 md:p-10 rounded-[40px] shadow-2xl relative z-10">
-               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
-                 <div className="bg-green-50 rounded-3xl p-6 text-center shadow-inner">
-                   <div className="text-4xl md:text-6xl font-bold text-primary mb-2">500+</div>
-                   <div className="text-xs sm:text-sm font-bold tracking-wider uppercase text-gray-600">Active Clinics</div>
-                 </div>
-                 <div className="bg-teal-50 rounded-3xl p-6 text-center shadow-inner">
-                   <div className="text-4xl md:text-6xl font-bold text-teal-600 mb-2">100k+</div>
-                   <div className="text-xs sm:text-sm font-bold tracking-wider uppercase text-gray-600">Happy Patients</div>
-                 </div>
-                 <div className="col-span-1 sm:col-span-2 bg-gradient-to-r from-gray-50 to-white border border-gray-100 rounded-3xl p-6 md:p-8 flex flex-col sm:flex-row items-center justify-between gap-4 group hover:border-primary/30 transition-colors text-center sm:text-left">
-                   <div>
-                     <div className="text-2xl font-bold text-gray-900 mb-1 group-hover:text-primary transition-colors">Guaranteed ROI</div>
-                     <div className="text-xs sm:text-sm text-gray-500 font-medium">For every partnered medical professional</div>
-                   </div>
-                   <BadgeCheck className="text-primary text-5xl" />
-                 </div>
-               </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
+                <div className="bg-green-50 rounded-3xl p-6 text-center shadow-inner">
+                  <div className="text-4xl md:text-6xl font-bold text-primary mb-2">12,000+</div>
+                  <div className="text-xs sm:text-sm font-bold tracking-wider uppercase text-gray-600">Active Clinics</div>
+                </div>
+                <div className="bg-teal-50 rounded-3xl p-6 text-center shadow-inner">
+                  <div className="text-4xl md:text-6xl font-bold text-teal-600 mb-2">100k+</div>
+                  <div className="text-xs sm:text-sm font-bold tracking-wider uppercase text-gray-600">Happy Patients</div>
+                </div>
+                <div className="col-span-1 sm:col-span-2 bg-gradient-to-r from-gray-50 to-white border border-gray-100 rounded-3xl p-6 md:p-8 flex flex-col sm:flex-row items-center justify-between gap-4 group hover:border-primary/30 transition-colors text-center sm:text-left">
+                  <div>
+                    <div className="text-2xl font-bold text-gray-900 mb-1 group-hover:text-primary transition-colors">Fantastic ROI</div>
+                    <div className="text-xs sm:text-sm text-gray-500 font-medium">For every partnered medical professional</div>
+                  </div>
+                  <BadgeCheck className="text-primary text-5xl" />
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -270,40 +266,40 @@ const AffiliateProgram = () => {
           <h2 className="text-4xl md:text-5xl font-display font-bold text-gray-900 mb-24 tracking-tight">
             Seamlessly Fits Your <span className="text-primary italic">Practice</span>
           </h2>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 lg:gap-12 relative">
-             {/* Connecting dashed line - desktop only */}
-             <div className="hidden md:block absolute top-[50px] left-[15%] right-[15%] h-0.5 border-t-2 border-dashed border-gray-300 -z-10"></div>
-             
-             {/* Step 1 */}
-             <div className="bg-white rounded-[32px] p-10 border border-gray-100 shadow-lg relative z-10 group hover:-translate-y-4 transition-all duration-300 hover:shadow-2xl hover:border-green-200 mx-auto w-full max-w-sm">
-                <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-gray-900 text-white w-10 h-10 rounded-xl flex items-center justify-center font-bold shadow-lg">1</div>
-                <div className="w-24 h-24 bg-green-50 text-primary rounded-full flex items-center justify-center mx-auto mb-8 shadow-inner border-[6px] border-white group-hover:scale-110 transition-transform duration-300">
-                  <ClipboardPlus className="text-4xl" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4 text-gray-900">Patient Visits</h3>
-                <p className="text-gray-500 leading-relaxed font-medium">The patient visits your clinic for consultation or purchases medicine from your pharmacy as usual.</p>
-             </div>
+            {/* Connecting dashed line - desktop only */}
+            <div className="hidden md:block absolute top-[50px] left-[15%] right-[15%] h-0.5 border-t-2 border-dashed border-gray-300 -z-10"></div>
 
-             {/* Step 2 */}
-             <div className="bg-white rounded-[32px] p-10 border border-gray-100 shadow-lg relative z-10 group hover:-translate-y-4 transition-all duration-300 hover:shadow-2xl hover:border-teal-200 mx-auto w-full max-w-sm">
-                <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-gray-900 text-white w-10 h-10 rounded-xl flex items-center justify-center font-bold shadow-lg">2</div>
-                <div className="w-24 h-24 bg-teal-50 text-teal-600 rounded-full flex items-center justify-center mx-auto mb-8 shadow-inner border-[6px] border-white group-hover:scale-110 transition-transform duration-300">
-                  <Pointer className="text-4xl" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4 text-gray-900">You Offer Oxxy</h3>
-                <p className="text-gray-500 leading-relaxed font-medium">Your staff quickly scans their details into the Oxxy network, granting them an instant discount membership.</p>
-             </div>
+            {/* Step 1 */}
+            <div className="bg-white rounded-[32px] p-10 border border-gray-100 shadow-lg relative z-10 group hover:-translate-y-4 transition-all duration-300 hover:shadow-2xl hover:border-green-200 mx-auto w-full max-w-sm">
+              <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-gray-900 text-white w-10 h-10 rounded-xl flex items-center justify-center font-bold shadow-lg">1</div>
+              <div className="w-24 h-24 bg-green-50 text-primary rounded-full flex items-center justify-center mx-auto mb-8 shadow-inner border-[6px] border-white group-hover:scale-110 transition-transform duration-300">
+                <ClipboardPlus className="text-4xl" />
+              </div>
+              <h3 className="text-2xl font-bold mb-4 text-gray-900">Patient Visits</h3>
+              <p className="text-gray-500 leading-relaxed font-medium">The patient visits your clinic for consultation or purchases medicine from your pharmacy as usual.</p>
+            </div>
 
-             {/* Step 3 */}
-             <div className="bg-gradient-to-b from-white to-green-50/50 rounded-[32px] p-10 border border-green-100 shadow-xl relative z-10 group hover:-translate-y-4 transition-all duration-300 hover:shadow-2xl transform md:scale-105 border-b-[6px] border-b-primary mx-auto w-full max-w-sm">
-                <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-primary text-white w-10 h-10 rounded-xl flex items-center justify-center font-bold shadow-lg">3</div>
-                <div className="w-24 h-24 bg-gradient-to-tr from-primary to-teal-custom text-white rounded-full flex items-center justify-center mx-auto mb-8 shadow-inner border-[6px] border-white group-hover:rotate-12 transition-transform duration-300">
-                  <Wallet className="text-4xl" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4 text-primary-dark">They Save, You Earn</h3>
-                <p className="text-gray-700 leading-relaxed font-semibold">The patient saves massively on future diagnostics. You earn an instant, recurring commission automatically.</p>
-             </div>
+            {/* Step 2 */}
+            <div className="bg-white rounded-[32px] p-10 border border-gray-100 shadow-lg relative z-10 group hover:-translate-y-4 transition-all duration-300 hover:shadow-2xl hover:border-teal-200 mx-auto w-full max-w-sm">
+              <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-gray-900 text-white w-10 h-10 rounded-xl flex items-center justify-center font-bold shadow-lg">2</div>
+              <div className="w-24 h-24 bg-teal-50 text-teal-600 rounded-full flex items-center justify-center mx-auto mb-8 shadow-inner border-[6px] border-white group-hover:scale-110 transition-transform duration-300">
+                <Pointer className="text-4xl" />
+              </div>
+              <h3 className="text-2xl font-bold mb-4 text-gray-900">You Offer Oxxy</h3>
+              <p className="text-gray-500 leading-relaxed font-medium">Your staff quickly scans their details into the Oxxy network, granting them an instant discount membership.</p>
+            </div>
+
+            {/* Step 3 */}
+            <div className="bg-gradient-to-b from-white to-green-50/50 rounded-[32px] p-10 border border-green-100 shadow-xl relative z-10 group hover:-translate-y-4 transition-all duration-300 hover:shadow-2xl transform md:scale-105 border-b-[6px] border-b-primary mx-auto w-full max-w-sm">
+              <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-primary text-white w-10 h-10 rounded-xl flex items-center justify-center font-bold shadow-lg">3</div>
+              <div className="w-24 h-24 bg-gradient-to-tr from-primary to-teal-custom text-white rounded-full flex items-center justify-center mx-auto mb-8 shadow-inner border-[6px] border-white group-hover:rotate-12 transition-transform duration-300">
+                <Wallet className="text-4xl" />
+              </div>
+              <h3 className="text-2xl font-bold mb-4 text-primary-dark">They Save, You Earn</h3>
+              <p className="text-gray-700 leading-relaxed font-semibold">The patient saves massively on future diagnostics and treatments. You earn an instant, recurring commission automatically.</p>
+            </div>
           </div>
         </div>
       </section>
@@ -320,23 +316,23 @@ const AffiliateProgram = () => {
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {[
-            { icon: Lock, title: 'City Lock-in Rights', desc: 'Secure exclusive Oxxy rights in your city. Be the premier healthcare provider with access to our network.' },
-            { icon: IndianRupee, title: 'Recurring Practice Revenue', desc: 'Earn monthly recurring commissions for every patient or customer who subscribes through your clinic/pharmacy.' },
-            { icon: Heart, title: 'Patient Retention', desc: 'Provide unmatched diagnostic and surgical savings, ensuring your patients always return to you.' },
-            { icon: Users, title: 'Dedicated Support', desc: 'Get a dedicated account manager to assist your clinic and staff directly via WhatsApp and calls.' },
-            { icon: Megaphone, title: 'Clinic Branding Materials', desc: 'Ready-made standees, desk-brochures, and digital creatives for your clinic or pharmacy.' },
-            { icon: BadgeCheck, title: 'Trusted Network', desc: 'Join a rapidly growing medical ecosystem built for doctors, trusted by millions of patients.' },
-          ].map((feature, idx) => (
-            <div key={idx} className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md hover:border-green-200 transition-all text-left">
-              <div className="w-14 h-14 bg-green-50 text-primary rounded-xl flex items-center justify-center mb-6">
-                <feature.icon className="w-8 h-8" />
+            {[
+              { icon: Lock, title: 'City Lock-in Rights', desc: 'Secure exclusive Oxxy rights in your city. Be the premier healthcare provider with access to our network.' },
+              { icon: IndianRupee, title: 'Recurring Practice Revenue', desc: 'Earn monthly recurring commissions for every patient or customer who subscribes through your clinic/pharmacy.' },
+              { icon: Heart, title: 'Patient Retention', desc: 'Provide unmatched diagnostic and surgical savings, ensuring your patients always return to you.' },
+              { icon: Users, title: 'Dedicated Support', desc: 'Get a dedicated account manager to assist your clinic and staff directly via WhatsApp and calls.' },
+              { icon: Megaphone, title: 'Clinic Branding Materials', desc: 'Ready-made standees, desk-brochures, and digital creatives for your clinic or pharmacy.' },
+              { icon: BadgeCheck, title: 'Trusted Network', desc: 'Join a rapidly growing medical ecosystem built for doctors, trusted by millions of patients.' },
+            ].map((feature, idx) => (
+              <div key={idx} className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md hover:border-green-200 transition-all text-left">
+                <div className="w-14 h-14 bg-green-50 text-primary rounded-xl flex items-center justify-center mb-6">
+                  <feature.icon className="w-8 h-8" />
+                </div>
+                <h3 className="text-xl font-bold mb-3 text-gray-900">{feature.title}</h3>
+                <p className="text-gray-600 text-sm leading-relaxed">{feature.desc}</p>
               </div>
-              <h3 className="text-xl font-bold mb-3 text-gray-900">{feature.title}</h3>
-              <p className="text-gray-600 text-sm leading-relaxed">{feature.desc}</p>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -345,41 +341,41 @@ const AffiliateProgram = () => {
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/black-linen.png')] opacity-20"></div>
         <div className="absolute -top-[20%] -left-[10%] w-96 h-96 bg-primary/30 rounded-full blur-[120px]"></div>
         <div className="absolute -bottom-[20%] -right-[10%] w-96 h-96 bg-teal-custom/30 rounded-full blur-[120px]"></div>
-        
-        <div className="max-w-5xl mx-auto relative z-10 text-center">
-           <h2 className="text-3xl md:text-5xl font-display font-bold mb-6">
-             Calculate Your Additional Revenue
-           </h2>
-           <p className="text-lg text-gray-400 mb-16 max-w-2xl mx-auto">
-             See how integrating Oxxy into your daily practice can compound into a massive passive income stream over the year.
-           </p>
 
-           <div className="bg-white/10 backdrop-blur-md border border-white/20 p-8 md:p-12 rounded-3xl max-w-3xl mx-auto shadow-2xl">
-              <label className="block text-xl font-medium mb-8 text-center">
-                 Average Daily Patient/Customer Walk-ins: <span className="text-primary font-bold text-3xl ml-2">{patientsPerDay}</span>
-              </label>
-              <input 
-                type="range" 
-                min="5" max="100" step="5"
-                value={patientsPerDay} 
-                onChange={(e) => setPatientsPerDay(e.target.value)}
-                className="w-full h-3 bg-gray-600 rounded-lg appearance-none cursor-pointer accent-primary mb-12"
-              />
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
-                 <div className="bg-black/30 p-6 rounded-2xl border border-white/5">
-                    <p className="text-gray-400 text-sm font-medium uppercase tracking-wider mb-2">Projected Monthly Extra Earnings</p>
-                    <p className="text-4xl font-bold text-white">₹{monthlyEarnings.toLocaleString('en-IN')}</p>
-                 </div>
-                 <div className="bg-gradient-to-br from-primary to-teal-custom p-6 rounded-2xl shadow-lg border border-white/20">
-                    <p className="text-white/80 text-sm font-medium uppercase tracking-wider mb-2">Projected Yearly Total</p>
-                    <p className="text-4xl font-bold text-white">₹{yearlyEarnings.toLocaleString('en-IN')}</p>
-                 </div>
+        <div className="max-w-5xl mx-auto relative z-10 text-center">
+          <h2 className="text-3xl md:text-5xl font-display font-bold mb-6">
+            Calculate Your Additional Revenue
+          </h2>
+          <p className="text-lg text-gray-400 mb-16 max-w-2xl mx-auto">
+            See how integrating Oxxy into your daily practice can compound into a massive passive income stream over the year.
+          </p>
+
+          <div className="bg-white/10 backdrop-blur-md border border-white/20 p-8 md:p-12 rounded-3xl max-w-3xl mx-auto shadow-2xl">
+            <label className="block text-xl font-medium mb-8 text-center">
+              Average Daily Patient/Customer Walk-ins: <span className="text-primary font-bold text-3xl ml-2">{patientsPerDay}</span>
+            </label>
+            <input
+              type="range"
+              min="5" max="100" step="5"
+              value={patientsPerDay}
+              onChange={(e) => setPatientsPerDay(e.target.value)}
+              className="w-full h-3 bg-gray-600 rounded-lg appearance-none cursor-pointer accent-primary mb-12"
+            />
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
+              <div className="bg-black/30 p-6 rounded-2xl border border-white/5">
+                <p className="text-gray-400 text-sm font-medium uppercase tracking-wider mb-2">Projected Monthly Extra Earnings</p>
+                <p className="text-4xl font-bold text-white">₹{monthlyEarnings.toLocaleString('en-IN')}</p>
               </div>
-              <p className="text-xs text-gray-500 mt-6 text-center">
-                 *Projections are estimates based on a 20% conversion rate of walk-ins and a conservative ₹500 avg. commission per active activation over 25 working days/month.
-              </p>
-           </div>
+              <div className="bg-gradient-to-br from-primary to-teal-custom p-6 rounded-2xl shadow-lg border border-white/20">
+                <p className="text-white/80 text-sm font-medium uppercase tracking-wider mb-2">Projected Yearly Total</p>
+                <p className="text-4xl font-bold text-white">₹{yearlyEarnings.toLocaleString('en-IN')}</p>
+              </div>
+            </div>
+            <p className="text-xs text-gray-500 mt-6 text-center">
+              *Projections are estimates based on a 20% conversion rate of walk-ins and a conservative ₹500 avg. commission per active activation over 25 working days/month.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -459,50 +455,50 @@ const AffiliateProgram = () => {
 
       {/* Testimonials */}
       <section className="py-24 px-6 bg-gray-50 border-t border-gray-100">
-         <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-               <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-4">
-                 Trusted by Over 500+ Clinics & Pharmacies
-               </h2>
-               <p className="text-lg text-gray-600">
-                 Real results from medical professionals who integrated Oxxy.
-               </p>
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-4">
+              Trusted by Over 12,000+ Clinics & Pharmacies
+            </h2>
+            <p className="text-lg text-gray-600">
+              Real results from medical professionals who integrated Oxxy.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 relative pt-12">
+              <div className="absolute -top-6 left-8 bg-primary rounded-full w-12 h-12 flex items-center justify-center text-white shadow-lg text-2xl">
+                <Quote className="" />
+              </div>
+              <p className="text-gray-700 text-lg italic mb-6 leading-relaxed">
+                "Integrating Oxxy was frictionless. It takes our receptionist 30 seconds to sign up a patient, and they love the diagnostic discounts. My clinic's secondary revenue jumped by 40% in just 3 months without any extra infrastructure."
+              </p>
+              <div className="flex items-center gap-4 border-t border-gray-100 pt-6">
+                <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center font-bold text-gray-500">Dr</div>
+                <div>
+                  <h4 className="font-bold text-gray-900">Dr. Rajesh Khanna</h4>
+                  <p className="text-sm text-gray-500">Pediatric Clinic Owner, Delhi NCR</p>
+                </div>
+              </div>
             </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-               <div className="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 relative pt-12">
-                  <div className="absolute -top-6 left-8 bg-primary rounded-full w-12 h-12 flex items-center justify-center text-white shadow-lg text-2xl">
-                     <Quote className="" />
-                  </div>
-                  <p className="text-gray-700 text-lg italic mb-6 leading-relaxed">
-                     "Integrating Oxxy was frictionless. It takes our receptionist 30 seconds to sign up a patient, and they love the diagnostic discounts. My clinic's secondary revenue jumped by 40% in just 3 months without any extra infrastructure."
-                  </p>
-                  <div className="flex items-center gap-4 border-t border-gray-100 pt-6">
-                     <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center font-bold text-gray-500">Dr</div>
-                     <div>
-                        <h4 className="font-bold text-gray-900">Dr. Rajesh Khanna</h4>
-                        <p className="text-sm text-gray-500">Pediatric Clinic Owner, Delhi NCR</p>
-                     </div>
-                  </div>
-               </div>
-               
-               <div className="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 relative pt-12">
-                  <div className="absolute -top-6 left-8 bg-teal-custom rounded-full w-12 h-12 flex items-center justify-center text-white shadow-lg text-2xl">
-                     <Quote className="" />
-                  </div>
-                  <p className="text-gray-700 text-lg italic mb-6 leading-relaxed">
-                     "As a pharmacy, margins were getting tight. We started offering the Oxxy plan to chronic patients buying monthly meds. The recurring commissions cover my entire shop's rent now. Highly recommended."
-                  </p>
-                  <div className="flex items-center gap-4 border-t border-gray-100 pt-6">
-                     <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center font-bold text-gray-500">MP</div>
-                     <div>
-                        <h4 className="font-bold text-gray-900">Manoj Patel</h4>
-                        <p className="text-sm text-gray-500">Retail Chemist Owner, Surat</p>
-                     </div>
-                  </div>
-               </div>
+
+            <div className="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 relative pt-12">
+              <div className="absolute -top-6 left-8 bg-teal-custom rounded-full w-12 h-12 flex items-center justify-center text-white shadow-lg text-2xl">
+                <Quote className="" />
+              </div>
+              <p className="text-gray-700 text-lg italic mb-6 leading-relaxed">
+                "As a pharmacy, margins were getting tight. We started offering the Oxxy plan to chronic patients buying monthly meds. The recurring commissions cover my entire shop's rent now. Highly recommended."
+              </p>
+              <div className="flex items-center gap-4 border-t border-gray-100 pt-6">
+                <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center font-bold text-gray-500">MP</div>
+                <div>
+                  <h4 className="font-bold text-gray-900">Manoj Patel</h4>
+                  <p className="text-sm text-gray-500">Retail Chemist Owner, Surat</p>
+                </div>
+              </div>
             </div>
-         </div>
+          </div>
+        </div>
       </section>
 
       {/* 6. "How to Apply" Steps */}
@@ -520,7 +516,7 @@ const AffiliateProgram = () => {
               { num: '04', title: 'Empower Patients', desc: 'Receive your clinic materials, help patients save, and start generating revenue.' },
             ].map((step, idx) => (
               <div key={idx} className="relative w-full flex flex-col items-center">
-                
+
                 {/* Next Step Arrow (Desktop) */}
                 {idx < 3 && (
                   <div className="hidden md:flex absolute top-10 -right-4 translate-x-1/2 -translate-y-1/2 items-center justify-center text-green-300 z-0 opacity-80">
@@ -548,17 +544,17 @@ const AffiliateProgram = () => {
             </h2>
             <p className="text-lg text-gray-600">Everything you need to know before joining.</p>
           </div>
-          
+
           <div className="space-y-4">
             {[
-               { q: "Will this interfere with my standard consultation fees?", a: "No, absolutely not. Oxxy's savings apply to diagnostics, surgeries, and specific network partners. Your clinic's OPD and consultation fees remain entirely under your control." },
-               { q: "Do I need technical skills to onboard patients?", a: "Not at all. You or your receptionist only need a smartphone or tablet. The process takes less than 60 seconds per patient using our streamlined app." },
-               { q: "How and when do I get paid?", a: "Commissions are tracked transparently on your partner dashboard and are deposited directly into your linked bank account automatically every month." },
-               { q: "Is patient data secure and HIPAA-aligned?", a: "Yes. Oxxy employs bank-level encryption and strict data privacy protocols. We do not sell patient data, ensuring full trust between you and your patients." },
+              { q: "Will this interfere with my standard consultation fees?", a: "No, absolutely not. Oxxy's savings apply to diagnostics, surgeries, and specific network partners. Your clinic's OPD and consultation fees remain entirely under your control." },
+              { q: "Do I need technical skills to onboard patients?", a: "Not at all. You or your receptionist only need a smartphone or tablet. The process takes less than 60 seconds per patient using our streamlined app." },
+              { q: "How and when do I get paid?", a: "Commissions are tracked transparently on your partner dashboard and are deposited directly into your linked bank account automatically every month." },
+              { q: "Is patient data secure and HIPAA-aligned?", a: "Yes. Oxxy employs bank-level encryption and strict data privacy protocols. We do not sell patient data, ensuring full trust between you and your patients." },
             ].map((faq, idx) => (
               <div key={idx} className="border border-gray-200 rounded-2xl overflow-hidden transition-all duration-300">
-                <button 
-                  onClick={() => toggleFaq(idx)} 
+                <button
+                  onClick={() => toggleFaq(idx)}
                   className="w-full px-6 py-5 bg-white text-left font-bold text-gray-900 hover:bg-gray-50 flex items-center justify-between focus:outline-none"
                 >
                   {faq.q}
