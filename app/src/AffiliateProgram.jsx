@@ -172,7 +172,7 @@ const AffiliateProgram = () => {
               </span>
             </h1>
             <p className="text-lg md:text-2xl mb-8 md:mb-10 font-medium text-gray-600 max-w-2xl text-left">
-              For Doctors, Pharmacy Owners, & Pathlab Owners Who Want to Empower Patients and Grow Their Revenue.
+              For Doctors, Pharmacy Owners, & Pathlab Owners who want to Empower Patients and Grow Their Revenue.
             </p>
 
             <a
