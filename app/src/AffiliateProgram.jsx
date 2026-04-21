@@ -29,11 +29,23 @@ import {
 } from 'lucide-react';
 
 
+const INDIAN_STATES = [
+  "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Goa", "Gujarat", "Haryana", 
+  "Himachal Pradesh", "Jharkhand", "Karnataka", "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", 
+  "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", 
+  "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal"
+];
+
 const AffiliateProgram = () => {
+  const [onboardingStep, setOnboardingStep] = useState(1); // 1: Form, 2: SMS Verification
+  const [otp, setOtp] = useState('');
+  const [isVerifying, setIsVerifying] = useState(false);
+
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
     phone: '',
+    state: '',
     city: '',
     experience: '',
     occupation: '',
@@ -42,9 +54,30 @@ const AffiliateProgram = () => {
 
   const [errors, setErrors] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [patientsPerDay, setPatientsPerDay] = useState(10);
-  const monthlyEarnings = Math.round(patientsPerDay * 0.2 * 500 * 25);
+  const [patientsPerDay, setPatientsPerDay] = useState(20);
+  
+  // Custom calculator based on integrated lab affiliate revenue
+  const calculateCommissions = (dailyPatients) => {
+    // 240% LTV Boost: Basic Scan Referral (₹600) + Lab/Diagnostic Referral (₹1400)
+    const avgRevenuePerLead = 2000; 
+    const convRate = 0.25; 
+    const days = 25;
+    const monthlyVolume = dailyPatients * convRate * avgRevenuePerLead * days;
+    
+    let rate = 0.25;
+    if (monthlyVolume >= 3000000) rate = 0.35;
+    else if (monthlyVolume >= 1000000) rate = 0.30;
+    
+    return {
+      volume: monthlyVolume,
+      earnings: Math.round(monthlyVolume * rate),
+      rate: rate * 100
+    };
+  };
+
+  const { volume: monthlyVolume, earnings: monthlyEarnings, rate: currentRate } = calculateCommissions(patientsPerDay);
   const yearlyEarnings = monthlyEarnings * 12;
+
   const [openFaq, setOpenFaq] = useState(null);
 
   const toggleFaq = (index) => {
@@ -66,6 +99,7 @@ const AffiliateProgram = () => {
     } else if (!/^\d{10}$/.test(formData.phone)) {
       tempErrors.phone = "Phone number must be exactly 10 digits";
     }
+    if (!formData.state) tempErrors.state = "Please select a state";
     if (!formData.city) tempErrors.city = "Please select a city";
     if (!formData.reason) tempErrors.reason = "Please provide your reason for interesting";
 
@@ -84,20 +118,30 @@ const AffiliateProgram = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
-      // Simulate form submission
-      console.log('Form submitted:', formData);
+      // Transition to SMS Verification
+      setOnboardingStep(2);
+    }
+  };
+
+  const handleVerifyOTP = (e) => {
+    e.preventDefault();
+    setIsVerifying(true);
+    // Simulate verification delay
+    setTimeout(() => {
+      setIsVerifying(false);
       setIsSubmitted(true);
       setFormData({
         fullName: '',
         email: '',
         phone: '',
+        state: '',
         city: '',
         experience: '',
         occupation: '',
         reason: '',
       });
       setErrors({});
-    }
+    }, 1500);
   };
 
   return (
@@ -112,7 +156,7 @@ const AffiliateProgram = () => {
 
           {/* Desktop Menu */}
           <div className="hidden sm:flex items-center gap-8 font-medium text-sm text-gray-700">
-            <a href="#about" className="hover:text-primary transition-colors">How It Works</a>
+            <a href="#how-it-works" className="hover:text-primary transition-colors">How It Works</a>
             <a href="#benefits" className="hover:text-primary transition-colors">Features</a>
             <a href="#apply-form" className="px-6 py-2.5 bg-primary text-white rounded-full hover:bg-primary-dark transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5">Apply Now</a>
           </div>
@@ -132,7 +176,7 @@ const AffiliateProgram = () => {
         {isMobileMenuOpen && (
           <div className="sm:hidden bg-white border-t border-gray-100 shadow-xl absolute top-20 left-0 w-full flex flex-col p-6 gap-6 font-medium text-lg text-gray-800 transition-all z-40">
             <a
-              href="#about"
+              href="#how-it-works"
               className="hover:text-primary border-b border-gray-50 pb-2"
               onClick={() => setIsMobileMenuOpen(false)}
             >
@@ -259,7 +303,7 @@ const AffiliateProgram = () => {
       </section>
 
       {/* Clinic Workflow Section */}
-      <section className="py-24 px-6 bg-gray-50 border-t border-b border-gray-100 relative overflow-hidden">
+      <section id="how-it-works" className="py-24 px-6 bg-gray-50 border-t border-b border-gray-100 relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/clean-gray-paper.png')] opacity-40 mix-blend-multiply"></div>
         <div className="max-w-6xl mx-auto text-center relative z-10">
           <span className="inline-block bg-white text-gray-600 px-5 py-2 rounded-full text-sm font-bold mb-6 border border-gray-200 shadow-sm">Simple 3-Step Process</span>
@@ -287,38 +331,42 @@ const AffiliateProgram = () => {
               <div className="w-24 h-24 bg-teal-50 text-teal-600 rounded-full flex items-center justify-center mx-auto mb-8 shadow-inner border-[6px] border-white group-hover:scale-110 transition-transform duration-300">
                 <Pointer className="text-4xl" />
               </div>
-              <h3 className="text-2xl font-bold mb-4 text-gray-900">You Offer Oxxy</h3>
-              <p className="text-gray-500 leading-relaxed font-medium">Your staff quickly scans their details into the Oxxy network, granting them an instant discount membership.</p>
+              <h3 className="text-2xl font-bold mb-4 text-gray-900">Activate Scans & Lab Test</h3>
+              <p className="text-gray-500 leading-relaxed font-medium">Your staff quickly scans their details into the Oxxy network, granting them an instant discount membership for all future diagnostics.</p>
             </div>
 
             {/* Step 3 */}
             <div className="bg-gradient-to-b from-white to-green-50/50 rounded-[32px] p-10 border border-green-100 shadow-xl relative z-10 group hover:-translate-y-4 transition-all duration-300 hover:shadow-2xl transform md:scale-105 border-b-[6px] border-b-primary mx-auto w-full max-w-sm">
               <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-primary text-white w-10 h-10 rounded-xl flex items-center justify-center font-bold shadow-lg">3</div>
               <div className="w-24 h-24 bg-gradient-to-tr from-primary to-teal-custom text-white rounded-full flex items-center justify-center mx-auto mb-8 shadow-inner border-[6px] border-white group-hover:rotate-12 transition-transform duration-300">
-                <Wallet className="text-4xl" />
+                <IndianRupee className="text-4xl" />
               </div>
               <h3 className="text-2xl font-bold mb-4 text-primary-dark">They Save, You Earn</h3>
-              <p className="text-gray-700 leading-relaxed font-semibold">The patient saves massively on future diagnostics and treatments. You earn an instant, recurring commission automatically.</p>
+              <p className="text-gray-700 font-semibold leading-relaxed">
+                The patient saves massively on future diagnostics, treatments and lab tests. You earn an instant, recurring commission automatically.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 3. Benefits Grid */}
+
+
+      {/* Benefits Grid */}
       <section id="benefits" className="bg-gray-50 py-24 px-6">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-4">
-              Why Become an Oxxy Partner?
+            <h2 className="text-3xl md:text-5xl font-display font-bold text-gray-900 mb-6">
+              The Oxxy Advantage
             </h2>
-            <p className="text-lg font-medium text-gray-600">
+            <p className="text-lg md:text-xl font-medium text-gray-600 max-w-3xl mx-auto">
               Everything you need to grow your practice, retain patients, and unlock new revenue streams.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               { icon: Lock, title: 'City Lock-in Rights', desc: 'Secure exclusive Oxxy rights in your city. Be the premier healthcare provider with access to our network.' },
-              { icon: IndianRupee, title: 'Recurring Practice Revenue', desc: 'Earn monthly recurring commissions for every patient or customer who subscribes through your clinic/pharmacy.' },
+              { icon: IndianRupee, title: 'Tiered Commission 💰', desc: 'Earn up to 35% commission. The more volume you drive, the higher your cut per patient.' },
               { icon: Heart, title: 'Patient Retention', desc: 'Provide unmatched diagnostic and surgical savings, ensuring your patients always return to you.' },
               { icon: Users, title: 'Dedicated Support', desc: 'Get a dedicated account manager to assist your clinic and staff directly via WhatsApp and calls.' },
               { icon: Megaphone, title: 'Clinic Branding Materials', desc: 'Ready-made standees, desk-brochures, and digital creatives for your clinic or pharmacy.' },
@@ -337,44 +385,66 @@ const AffiliateProgram = () => {
       </section>
 
       {/* Earnings Simulator */}
-      <section className="py-24 px-6 bg-[#091524] text-white overflow-hidden relative">
+      <section id="simulator" className="py-24 px-6 bg-[#091524] text-white overflow-hidden relative">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/black-linen.png')] opacity-20"></div>
         <div className="absolute -top-[20%] -left-[10%] w-96 h-96 bg-primary/30 rounded-full blur-[120px]"></div>
         <div className="absolute -bottom-[20%] -right-[10%] w-96 h-96 bg-teal-custom/30 rounded-full blur-[120px]"></div>
 
-        <div className="max-w-5xl mx-auto relative z-10 text-center">
-          <h2 className="text-3xl md:text-5xl font-display font-bold mb-6">
-            Calculate Your Additional Revenue
-          </h2>
-          <p className="text-lg text-gray-400 mb-16 max-w-2xl mx-auto">
-            See how integrating Oxxy into your daily practice can compound into a massive passive income stream over the year.
-          </p>
-
-          <div className="bg-white/10 backdrop-blur-md border border-white/20 p-8 md:p-12 rounded-3xl max-w-3xl mx-auto shadow-2xl">
-            <label className="block text-xl font-medium mb-8 text-center">
-              Average Daily Patient/Customer Walk-ins: <span className="text-primary font-bold text-3xl ml-2">{patientsPerDay}</span>
-            </label>
-            <input
-              type="range"
-              min="5" max="100" step="5"
-              value={patientsPerDay}
-              onChange={(e) => setPatientsPerDay(e.target.value)}
-              className="w-full h-3 bg-gray-600 rounded-lg appearance-none cursor-pointer accent-primary mb-12"
-            />
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
-              <div className="bg-black/30 p-6 rounded-2xl border border-white/5">
-                <p className="text-gray-400 text-sm font-medium uppercase tracking-wider mb-2">Projected Monthly Extra Earnings</p>
-                <p className="text-4xl font-bold text-white">₹{monthlyEarnings.toLocaleString('en-IN')}</p>
-              </div>
-              <div className="bg-gradient-to-br from-primary to-teal-custom p-6 rounded-2xl shadow-lg border border-white/20">
-                <p className="text-white/80 text-sm font-medium uppercase tracking-wider mb-2">Projected Yearly Total</p>
-                <p className="text-4xl font-bold text-white">₹{yearlyEarnings.toLocaleString('en-IN')}</p>
-              </div>
-            </div>
-            <p className="text-xs text-gray-500 mt-6 text-center">
-              *Projections are estimates based on a 20% conversion rate of walk-ins and a conservative ₹500 avg. commission per active activation over 25 working days/month.
+        <div className="max-w-6xl mx-auto relative z-10">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-display font-bold mb-6">
+              Calculate Your Additional Revenue
+            </h2>
+            <p className="text-lg text-gray-400 max-w-2xl mx-auto font-light">
+              See how integrating Oxxy into your daily practice can compound into a massive passive income stream over the year.
             </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto">
+             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                <div className={`p-4 rounded-xl border transition-all ${currentRate === 25 ? 'bg-primary/20 border-primary shadow-[0_0_15px_rgba(34,197,94,0.2)]' : 'bg-white/5 border-white/10 opacity-40'}`}>
+                   <div className="text-xl font-bold">25%</div>
+                   <div className="text-[10px] text-gray-400 uppercase tracking-widest">Base Tier</div>
+                </div>
+                <div className={`p-4 rounded-xl border transition-all ${currentRate === 30 ? 'bg-primary/20 border-primary shadow-[0_0_15px_rgba(34,197,94,0.2)]' : 'bg-white/5 border-white/10 opacity-40'}`}>
+                   <div className="text-xl font-bold">30%</div>
+                   <div className="text-[10px] text-gray-400 uppercase tracking-widest">Silver Tier</div>
+                </div>
+                <div className={`p-4 rounded-xl border transition-all ${currentRate === 35 ? 'bg-primary/20 border-primary shadow-[0_0_15px_rgba(34,197,94,0.2)]' : 'bg-white/5 border-white/10 opacity-40'}`}>
+                   <div className="text-xl font-bold">35%</div>
+                   <div className="text-[10px] text-gray-400 uppercase tracking-widest">Gold Tier</div>
+                </div>
+             </div>
+
+             <div className="bg-white/10 backdrop-blur-md border border-white/20 p-8 rounded-3xl shadow-2xl text-left">
+                <label className="block text-lg font-medium mb-6">
+                  Professional Network Conversions: <span className="text-primary font-bold text-2xl ml-2">{patientsPerDay} / day</span>
+                </label>
+                <input
+                  type="range"
+                  min="5" max="300" step="5"
+                  value={patientsPerDay}
+                  onChange={(e) => setPatientsPerDay(Number(e.target.value))}
+                  className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-primary mb-10"
+                />
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="bg-black/40 p-5 rounded-2xl border border-white/10">
+                    <p className="text-gray-400 text-xs font-bold uppercase tracking-widest mb-1">Estimated Sales Volume</p>
+                    <p className="text-3xl font-bold text-white">₹{monthlyVolume.toLocaleString('en-IN')}</p>
+                    <p className="text-[10px] text-primary mt-2 flex items-center gap-1 font-bold">
+                       <TrendingUp className="w-3 h-3"/> {currentRate}% Affiliate Cut
+                    </p>
+                  </div>
+                  <div className="bg-gradient-to-br from-primary to-teal-custom p-5 rounded-2xl shadow-xl border border-white/20">
+                    <p className="text-white/80 text-xs font-bold uppercase tracking-widest mb-1">Your projected monthly affiliate income</p>
+                    <p className="text-3xl font-bold text-white">₹{monthlyEarnings.toLocaleString('en-IN')}</p>
+                  </div>
+                </div>
+                <p className="text-[10px] text-gray-500 mt-6 font-medium">
+                  *Tiers: 25% (up to 10L), 30% (10L-30L), 35% (30L+).
+                </p>
+            </div>
           </div>
         </div>
       </section>
@@ -589,18 +659,21 @@ const AffiliateProgram = () => {
                 <div className="w-24 h-24 bg-green-50 text-primary rounded-full flex items-center justify-center mx-auto mb-6 transform scale-110">
                   <CheckCircle2 className="text-5xl" />
                 </div>
-                <h3 className="text-3xl font-bold text-gray-900 mb-4">Application Received!</h3>
+                <h3 className="text-3xl font-bold text-gray-900 mb-4">Onboarding Complete!</h3>
                 <p className="text-gray-600 mb-10 text-lg max-w-md mx-auto">
-                  Thank you for applying to the Oxxy Affiliate Program. Our team will review your profile and get back to you shortly.
+                  Welcome to the Oxxy Network. Your city exclusivity is being processed. Our team will contact you on WhatsApp shortly.
                 </p>
                 <button
-                  onClick={() => setIsSubmitted(false)}
+                  onClick={() => {
+                    setIsSubmitted(false);
+                    setOnboardingStep(1);
+                  }}
                   className="px-8 py-4 bg-gray-100 text-gray-700 font-bold rounded-xl hover:bg-gray-200 transition shadow-sm"
                 >
-                  Submit another application
+                  Back to Dashboard
                 </button>
               </div>
-            ) : (
+            ) : onboardingStep === 1 ? (
               <form onSubmit={handleSubmit} className="space-y-6" noValidate>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
@@ -611,7 +684,7 @@ const AffiliateProgram = () => {
                       required
                       value={formData.fullName}
                       onChange={handleChange}
-                      placeholder="e.g. Ramesh Kumar"
+                      placeholder="e.g. Dr. Ramesh Kumar"
                       className={`w-full px-5 py-4 rounded-xl border ${errors.fullName ? 'border-red-500 focus:ring-red-500' : 'border-gray-200 focus:border-primary focus:ring-1 focus:ring-primary'} bg-gray-50 text-gray-900 outline-none transition-shadow`}
                     />
                     {errors.fullName && <p className="text-red-500 text-xs mt-2">{errors.fullName}</p>}
@@ -628,6 +701,38 @@ const AffiliateProgram = () => {
                       className={`w-full px-5 py-4 rounded-xl border ${errors.email ? 'border-red-500 focus:ring-red-500' : 'border-gray-200 focus:border-primary focus:ring-1 focus:ring-primary'} bg-gray-50 text-gray-900 outline-none transition-shadow`}
                     />
                     {errors.email && <p className="text-red-500 text-xs mt-2">{errors.email}</p>}
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                   <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Select State *</label>
+                    <select
+                      name="state"
+                      required
+                      value={formData.state}
+                      onChange={handleChange}
+                      className={`w-full px-5 py-4 rounded-xl border ${errors.state ? 'border-red-500 focus:ring-red-500' : 'border-gray-200 focus:border-primary focus:ring-1 focus:ring-primary'} bg-gray-50 text-gray-900 outline-none transition-shadow appearance-none cursor-pointer`}
+                    >
+                      <option value="" disabled>Choose State...</option>
+                      {INDIAN_STATES.map(state => (
+                        <option key={state} value={state.toLowerCase().replace(' ', '_')}>{state}</option>
+                      ))}
+                    </select>
+                    {errors.state && <p className="text-red-500 text-xs mt-2">{errors.state}</p>}
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Preferred City *</label>
+                    <input
+                      type="text"
+                      name="city"
+                      required
+                      value={formData.city}
+                      onChange={handleChange}
+                      placeholder="Enter your city"
+                      className={`w-full px-5 py-4 rounded-xl border ${errors.city ? 'border-red-500 focus:ring-red-500' : 'border-gray-200 focus:border-primary focus:ring-1 focus:ring-primary'} bg-gray-50 text-gray-900 outline-none transition-shadow`}
+                    />
+                    {errors.city && <p className="text-red-500 text-xs mt-2">{errors.city}</p>}
                   </div>
                 </div>
 
@@ -652,30 +757,6 @@ const AffiliateProgram = () => {
                     {errors.phone && <p className="text-red-500 text-xs mt-2">{errors.phone}</p>}
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Preferred City *</label>
-                    <select
-                      name="city"
-                      required
-                      value={formData.city}
-                      onChange={handleChange}
-                      className={`w-full px-5 py-4 rounded-xl border ${errors.city ? 'border-red-500 focus:ring-red-500' : 'border-gray-200 focus:border-primary focus:ring-1 focus:ring-primary'} bg-gray-50 text-gray-900 outline-none transition-shadow appearance-none cursor-pointer`}
-                    >
-                      <option value="" disabled>Select your core market...</option>
-                      <option value="delhi_ncr">Delhi NCR</option>
-                      <option value="mumbai">Mumbai</option>
-                      <option value="bengaluru">Bengaluru</option>
-                      <option value="chennai">Chennai</option>
-                      <option value="hyderabad">Hyderabad</option>
-                      <option value="pune">Pune</option>
-                      <option value="other_tier_2">Other Tier-2 City</option>
-                      <option value="other_tier_3">Other Tier-3 City</option>
-                    </select>
-                    {errors.city && <p className="text-red-500 text-xs mt-2">{errors.city}</p>}
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Current Profession</label>
                     <select
                       name="occupation"
@@ -686,36 +767,23 @@ const AffiliateProgram = () => {
                       <option value="">Select your profession...</option>
                       <option value="doctor">Doctor (MBBS/MD/Specialist)</option>
                       <option value="doctor_ayush">Doctor (AYUSH/BAMS/BHMS)</option>
+                      <option value="lab_owner">Lab Owner / Diagnostic Center</option>
                       <option value="chemist">Chemist / Pharmacy Owner</option>
                       <option value="clinic_owner">Clinic / Hospital Owner</option>
                       <option value="other_medical">Other Medical Professional</option>
                     </select>
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Sales/Network Exp.</label>
-                    <select
-                      name="experience"
-                      value={formData.experience}
-                      onChange={handleChange}
-                      className="w-full px-5 py-4 rounded-xl border border-gray-200 bg-gray-50 text-gray-900 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-shadow appearance-none cursor-pointer"
-                    >
-                      <option value="">Select experience level...</option>
-                      <option value="beginner">Beginner (0-2 years)</option>
-                      <option value="intermediate">Intermediate (3-5 years)</option>
-                      <option value="expert">Expert (5+ years)</option>
-                    </select>
-                  </div>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Why are you interested in partnering? *</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Why are you interested? *</label>
                   <textarea
                     name="reason"
                     required
-                    rows={4}
+                    rows={3}
                     value={formData.reason}
                     onChange={handleChange}
-                    placeholder="Tell us a little bit about your local network and how you plan to acquire users..."
+                    placeholder="Tell us about your local network..."
                     className={`w-full px-5 py-4 rounded-xl border ${errors.reason ? 'border-red-500 focus:ring-red-500' : 'border-gray-200 focus:border-primary focus:ring-1 focus:ring-primary'} bg-gray-50 text-gray-900 outline-none transition-shadow resize-none`}
                   ></textarea>
                   {errors.reason && <p className="text-red-500 text-xs mt-2">{errors.reason}</p>}
@@ -724,15 +792,53 @@ const AffiliateProgram = () => {
                 <div className="pt-4">
                   <button
                     type="submit"
-                    className="w-full py-5 bg-gradient-to-r from-primary to-teal-custom hover:from-primary-dark hover:to-teal-custom text-white font-bold rounded-xl text-xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1"
+                    className="w-full py-5 bg-gradient-to-r from-primary to-teal-custom hover:from-primary-dark hover:to-teal-custom text-white font-bold rounded-xl text-xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 flex items-center justify-center gap-3"
                   >
-                    Submit Complete Application
+                    Proceed to Verification <ArrowRight className="w-6 h-6" />
                   </button>
-                  <p className="text-center text-sm text-gray-500 mt-6 flex items-center justify-center gap-2">
-                    <Lock className="text-gray-400" />
-                    Your data is secure. We never sell your information.
-                  </p>
                 </div>
+              </form>
+            ) : (
+              <form onSubmit={handleVerifyOTP} className="space-y-8 py-4">
+                <div className="text-center">
+                   <div className="w-16 h-16 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-6">
+                      <Phone className="w-8 h-8" />
+                   </div>
+                   <h3 className="text-2xl font-bold text-gray-900 mb-2">Verify Your Number</h3>
+                   <p className="text-gray-500">We've sent a 6-digit confirmation code to <span className="font-bold text-gray-900">+91 {formData.phone}</span></p>
+                </div>
+
+                <div className="max-w-xs mx-auto">
+                   <input
+                     type="text"
+                     maxLength="6"
+                     value={otp}
+                     onChange={(e) => setOtp(e.target.value.replace(/\D/g, ''))}
+                     placeholder="· · · · · ·"
+                     className="w-full text-center text-4xl tracking-[0.5em] font-bold py-6 rounded-2xl border-2 border-gray-100 bg-gray-50 focus:border-primary focus:bg-white outline-none transition-all"
+                   />
+                   <div className="flex justify-between mt-6 text-sm">
+                      <button type="button" className="text-gray-400 hover:text-primary font-medium">Resend Code</button>
+                      <button type="button" onClick={() => setOnboardingStep(1)} className="text-primary font-bold">Change Number</button>
+                   </div>
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={otp.length !== 6 || isVerifying}
+                  className={`w-full py-5 ${otp.length === 6 ? 'bg-primary shadow-lg hover:bg-primary-dark' : 'bg-gray-200 cursor-not-allowed'} text-white font-bold rounded-2xl text-xl transition-all transform ${otp.length === 6 ? 'hover:-translate-y-1' : ''} flex items-center justify-center gap-3`}
+                >
+                  {isVerifying ? (
+                    <>
+                      <div className="w-6 h-6 border-4 border-white/30 border-t-white rounded-full animate-spin"></div>
+                      Verifying...
+                    </>
+                  ) : (
+                    <>
+                      Complete Onboarding <BadgeCheck className="w-6 h-6" />
+                    </>
+                  )}
+                </button>
               </form>
             )}
           </div>
@@ -747,10 +853,10 @@ const AffiliateProgram = () => {
             <AlertTriangle className="text-6xl text-white/90" />
           </div>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-8 text-white leading-tight">
-            Ready to Claim Your City?
+            Ready to Build Your <br /> Healthcare Legacy?
           </h2>
           <p className="text-xl md:text-2xl mb-12 text-white/90 font-light max-w-3xl mx-auto">
-            Don't let someone else own your local market. Once a city slot is filled by a partnered affiliate, it’s locked indefinitely.
+            Join 12,000+ medical professionals who are redefining healthcare access in India.
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <a
@@ -784,7 +890,7 @@ const AffiliateProgram = () => {
 
               </div>
               <p className="text-gray-400 mb-8 leading-relaxed text-base pr-4">
-                India's largest healthcare network bringing affordable and accessible medical services to millions. We help you save on medical bills while building a highly profitable recurring income stream through automated optimization and expert-led execution.
+                India's largest healthcare network bringing affordable and accessible medical services to millions. We help you build a highly profitable recurring income stream through automated diagnostics and professional network optimization.
               </p>
 
               {/* Social Icons (Kept from previous) */}
@@ -804,35 +910,34 @@ const AffiliateProgram = () => {
               </div>
             </div>
 
-            {/* Middle Column: Protection Plans */}
+            {/* Middle Column: Quick Links */}
             <div className="text-left">
-              <h4 className="text-primary font-bold text-[17px] mb-6 tracking-wide">Protection Plans</h4>
+              <h4 className="text-white font-bold mb-8 text-lg uppercase tracking-wider">The Program</h4>
               <ul className="space-y-4">
-                <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Oxxy Everyday Plan</a></li>
-                <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Oxxy Vital Plan</a></li>
-                <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Oxxy Thrive Plan</a></li>
-                <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Oxxy Infinity Plan</a></li>
-                <li><a href="#" className="text-gray-300 hover:text-white transition-colors">What is OXXY PLUS PLAN</a></li>
+                <li><a href="#simulator" className="hover:text-primary transition-colors">Earnings Flow</a></li>
+                <li><a href="#benefits" className="hover:text-primary transition-colors">Incentive Hub</a></li>
+                <li><a href="#about" className="hover:text-primary transition-colors">How It Works</a></li>
+                <li><a href="#apply-form" className="hover:text-primary transition-colors">Application Form</a></li>
               </ul>
             </div>
 
-            {/* Right Column: Support */}
+            {/* Right Column: Contact */}
             <div className="text-left">
-              <h4 className="text-primary font-bold text-[17px] mb-6 tracking-wide">Support</h4>
-              <div className="flex flex-col gap-5">
-                <a href="tel:8800855340" className="flex items-center gap-4 text-gray-300 hover:text-white transition-colors group">
-                  <Phone className="text-gray-400 group-hover:text-primary transition-colors" />
-                  <span>8800855340</span>
-                </a>
-                <a href="https://wa.me/918800855340" target="_blank" rel="noreferrer" className="flex items-center gap-4 text-gray-300 hover:text-white transition-colors group">
-                  <MessageCircle className="text-gray-400 group-hover:text-primary transition-colors" />
-                  <span>8800855340</span>
-                </a>
-                <a href="mailto:info@oxxy.in" className="flex items-center gap-4 text-gray-300 hover:text-white transition-colors group">
-                  <Mail className="text-gray-400 group-hover:text-primary transition-colors" />
-                  <span>info@oxxy.in</span>
-                </a>
-              </div>
+              <h4 className="text-white font-bold mb-8 text-lg uppercase tracking-wider">Contact Support</h4>
+              <ul className="space-y-4">
+                <li className="flex items-center gap-3">
+                  <MessageCircle className="text-primary w-5 h-5" />
+                  <a href="#" className="hover:text-primary">WhatsApp: +91 911 380 000</a>
+                </li>
+                <li className="flex items-center gap-3">
+                  <Mail className="text-primary w-5 h-5" />
+                  <a href="mailto:partners@oxxy.com" className="hover:text-primary">partners@oxxy.com</a>
+                </li>
+                <li className="flex items-center gap-3">
+                  <MapPin className="text-primary w-5 h-5" />
+                  <span>New Delhi, India</span>
+                </li>
+              </ul>
             </div>
 
           </div>
