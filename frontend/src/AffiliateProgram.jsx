@@ -30,11 +30,11 @@ import {
 
 
 const INDIAN_STATES = [
-  "Andaman and Nicobar Islands", "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", 
-  "Chandigarh", "Chhattisgarh", "Dadra and Nagar Haveli and Daman and Diu", "Delhi", "Goa", 
-  "Gujarat", "Haryana", "Himachal Pradesh", "Jammu and Kashmir", "Jharkhand", "Karnataka", 
-  "Kerala", "Ladakh", "Lakshadweep", "Madhya Pradesh", "Maharashtra", "Manipur", 
-  "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Puducherry", "Punjab", "Rajasthan", 
+  "Andaman and Nicobar Islands", "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar",
+  "Chandigarh", "Chhattisgarh", "Dadra and Nagar Haveli and Daman and Diu", "Delhi", "Goa",
+  "Gujarat", "Haryana", "Himachal Pradesh", "Jammu and Kashmir", "Jharkhand", "Karnataka",
+  "Kerala", "Ladakh", "Lakshadweep", "Madhya Pradesh", "Maharashtra", "Manipur",
+  "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Puducherry", "Punjab", "Rajasthan",
   "Sikkim", "Tamil Nadu", "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal"
 ];
 
@@ -1052,11 +1052,11 @@ const AffiliateProgram = () => {
               <ul className="space-y-4">
                 <li className="flex items-center gap-3">
                   <MessageCircle className="text-primary w-5 h-5" />
-                  <a href="#" className="hover:text-primary">WhatsApp: +91 911 380 000</a>
+                  <a href="#" className="hover:text-primary">WhatsApp: +91 8800855340</a>
                 </li>
                 <li className="flex items-center gap-3">
                   <Mail className="text-primary w-5 h-5" />
-                  <a href="mailto:partners@oxxy.com" className="hover:text-primary">partners@oxxy.com</a>
+                  <a href="mailto:partners@oxxy.com" className="hover:text-primary">partners@oxxy.in</a>
                 </li>
                 <li className="flex items-center gap-3">
                   <MapPin className="text-primary w-5 h-5" />
